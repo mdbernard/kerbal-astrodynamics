@@ -4,7 +4,6 @@ import enum
 class Stage_1_Profile(enum.Enum):
     """Ascent/landing profiles for Falcon 9 Stage 1."""
     RTLS = 0
-    ASDS = 1
 
 
 class Stage_1_RTLS_Mode(enum.Enum):
@@ -38,6 +37,19 @@ class Stage_1():
             vessel (krpc.Vessel): the first stage of the rocket
             profile (Stage_1_Profile): the ascent/landing profile to use
         """
+        self.vessel = vessel
+        self.profile = profile
+        self._determine_init_mode()  # sets self.mode
+
+    def _determine_init_mode(self):
+        """
+        Determine which mode enumeration to use initially
+        based on flight profile.
+        """
+        if self.profile == Stage_1_Profile.RTLS:
+            self.mode = Stage_1_RTLS_Mode.PAD_PASSIVE
+        else:
+            self.mode = None
 
 
 def perform_pad_passive_ops():
@@ -52,7 +64,7 @@ def perform_pad_active_ops():
     Ignite the engines, separate from the launch tower, and ensure
     ascent begins nominally.
     """
-
+    return None
 
 
 def main():
