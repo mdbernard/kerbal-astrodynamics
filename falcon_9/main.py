@@ -1,24 +1,9 @@
 import enum
 
 import krpc
+import numpy as np
 
 from Falcon_9 import Falcon_9
-
-
-
-def perform_pad_passive_ops():
-    """
-    Perform operations on the launch pad pre-flight (do nothing).
-    """
-    return None
-
-
-def perform_pad_active_ops():
-    """
-    Ignite the engines, separate from the launch tower, and ensure
-    ascent begins nominally.
-    """
-    return None
 
 
 def main():
@@ -35,7 +20,7 @@ def main():
 
     mission_ongoing = True
     while mission_ongoing:
-        mission_ongoing = f9_stack.main()
+        mission_ongoing = f9_stack.main(space_center_api)
 
 
 if __name__ == '__main__':
